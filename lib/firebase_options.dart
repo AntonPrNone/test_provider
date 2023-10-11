@@ -23,22 +23,13 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return linux;
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -63,6 +54,15 @@ class DefaultFirebaseOptions {
     storageBucket: 'test-provider-278dc.appspot.com',
   );
 
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyD9e8i1XQuQW8IdcU29OAsNvRtno2rLawk',
+    appId: '1:133183469301:ios:6afa14df77c035ded3b7bc',
+    messagingSenderId: '133183469301',
+    projectId: 'test-provider-278dc',
+    storageBucket: 'test-provider-278dc.appspot.com',
+    iosBundleId: 'com.example.testProvider',
+  );
+
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyD9e8i1XQuQW8IdcU29OAsNvRtno2rLawk',
     appId: '1:133183469301:ios:5c6450a1d0757510d3b7bc',
@@ -70,5 +70,23 @@ class DefaultFirebaseOptions {
     projectId: 'test-provider-278dc',
     storageBucket: 'test-provider-278dc.appspot.com',
     iosBundleId: 'com.example.testProvider.RunnerTests',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyAjKTeNarL51-n_SMa2ajmAWQaARZyesx8',
+    appId: '1:133183469301:web:6ee8c0bc566acdc1d3b7bc',
+    messagingSenderId: '133183469301',
+    projectId: 'test-provider-278dc',
+    authDomain: 'test-provider-278dc.firebaseapp.com',
+    storageBucket: 'test-provider-278dc.appspot.com',
+  );
+
+  static const FirebaseOptions linux = FirebaseOptions(
+    apiKey: 'AIzaSyAjKTeNarL51-n_SMa2ajmAWQaARZyesx8',
+    appId: '1:133183469301:web:45ff2c6e0836cb5ed3b7bc',
+    messagingSenderId: '133183469301',
+    projectId: 'test-provider-278dc',
+    authDomain: 'test-provider-278dc.firebaseapp.com',
+    storageBucket: 'test-provider-278dc.appspot.com',
   );
 }
