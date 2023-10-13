@@ -1,5 +1,4 @@
-// my_app.dart
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,29 +15,54 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       title: 'Firestore Stream Example',
-      home: MultiProvider(
-        providers: [
-          StreamProvider<MyName>(
-            initialData: MyName(name: ''), // Инициализируйте оба поля
-            create: (context) {
-              final firestoreService = NameFirestoreService();
-              return firestoreService.streamDocument();
-            },
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Firestore Stream Example'),
+          backgroundColor: Color.fromARGB(255, 105, 0, 198),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Consumer<MyName>(
+                builder: (context, myName, child) {
+                  return Column(
+                    children: [
+                      Text('Name: ${myName.name}'),
+                      TextField(
+                        controller: TextEditingController(text: myName.name),
+                        onChanged: (newName) {
+                          // Обработка изменения имени
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ),
+              Consumer<MyAge>(
+                builder: (context, myAge, child) {
+                  return Column(
+                    children: [
+                      Text('Age: ${myAge.age.toString()}'),
+                      TextField(
+                        controller:
+                            TextEditingController(text: myAge.age.toString()),
+                        onChanged: (newAge) {
+                          // Обработка изменения возраста
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Обработка нажатия кнопки "Сохранить"
+                },
+                child: Text('Сохранить'),
+              ),
+            ],
           ),
-          StreamProvider<MyAge>(
-            initialData: MyAge(age: 0),
-            create: (context) {
-              final firestoreService = AgeFirestoreService();
-              return firestoreService.streamAgeDocument();
-            },
-          ),
-        ],
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('Firestore Stream Example'),
-            backgroundColor: Color.fromARGB(255, 105, 0, 198),
-          ),
-          body: FirestoreData(),
         ),
       ),
     );
